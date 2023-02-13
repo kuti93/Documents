@@ -1,4 +1,4 @@
-name: task 7 pipe
+name: CI pipe
 
 on:
   push:
