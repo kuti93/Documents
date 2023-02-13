@@ -1,0 +1,10 @@
+[Unit]
+Description=Go Hello World systemd service
+
+[Service]
+User=kutmanj
+ExecStart=/usr/bin/go /root/Document/IT-Course/main.go
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
