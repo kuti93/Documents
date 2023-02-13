@@ -3,7 +3,7 @@ Description=Docker container "go-test1" autostart service.
 
 [Service]
 Restart=on-failure
-ExecStart=/usr/bin/docker start -a go-test1
+ExecStart=/usr/bin/docker run go-test1
 ExecStop=/usr/bin/docker stop go-test1
 
 [Install]
