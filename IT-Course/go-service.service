@@ -1,10 +1,13 @@
 [Unit]
 Description=Go Hello World systemd service
+ConditionPathExists=/root/Documents/IT-Course
 
 [Service]
-User=kutmanj
-ExecStart=/usr/bin/go /root/Document/IT-Course/main.go
-Restart=always
+User=root
+WorkingDirectory=/root/Documents/IT-Course
+ExecStart=/usr/bin/go run .
+Restart=on-failure
+RestartSec=120
 
 [Install]
 WantedBy=multi-user.target
