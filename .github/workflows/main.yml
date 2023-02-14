@@ -22,8 +22,5 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build the Docker image
-        run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/it-course
-      -
         name: Docker Push
         run: docker push ${{ secrets.DOCKER_USERNAME }}/it-course
