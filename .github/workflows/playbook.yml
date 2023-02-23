@@ -1,0 +1,26 @@
+
+- name: Copy code to remote machine and start it
+  hosts: now
+  become: true
+  tasks:
+    - name: Copy code
+      copy:
+        src: /etc/ansible/go-autostart-docker.service
+        dest: /root/Documents/IT-Course
+
+    - name: Configure systemd unit file for code
+      template:
+        src: /etc/ansible/go-autostart-docker.service
+        dest: /etc/systemd/system/go-autostart-docker.service
+        mode: '0644'
+
+    - name: Reload systemd
+      systemd:
+        daemon_reload: yes
+
+    - name: Enable and start code service
+      become: true
+      systemd:
+        name: go-autostart-docker.service
+        state: started
+        enabled: yes

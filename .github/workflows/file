@@ -1,25 +1,28 @@
-name: New CI\CD
+name: Deploy Application
 
 on:
   push:
     branches:
-      - 'test-stage'
+      - main
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y ansible
           ansible-galaxy install -r requirements.yml
+
       - name: Deploy Docker container with Ansible
         env:
-          DOCKER_REGISTRY_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKER_REGISTRY_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+          DOCKER_REGISTRY_USERNAME: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
+          DOCKER_REGISTRY_PASSWORD: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
           ANSIBLE_HOST_KEY_CHECKING: false
         run: |
           ansible-playbook playbook.yml
