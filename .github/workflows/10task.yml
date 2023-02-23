@@ -19,7 +19,7 @@ jobs:
 #          ansible-galaxy install -r requirements.yml
       - name: Deploy Docker container with Ansible
         run: |
-          ansible-playbook ./IT-Course/playbook.yml
+          ansible-playbook IT-Course/playbook.yml
         env:
           DOCKER_REGISTRY_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKER_REGISTRY_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
