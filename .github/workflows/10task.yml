@@ -23,4 +23,4 @@ jobs:
           DOCKER_REGISTRY_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
           ANSIBLE_HOST_KEY_CHECKING: false
         run: |
-          ansible-playbook ./.github/workflows/playbook.yml
+          ansible-playbook ./workflows/playbook.yml
