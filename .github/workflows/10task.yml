@@ -1,4 +1,3 @@
-#10 Task
 name: New CI\CD
 
 on:
@@ -9,6 +8,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -24,4 +25,10 @@ jobs:
           DOCKER_REGISTRY_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKER_REGISTRY_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
           ANSIBLE_HOST_KEY_CHECKING: false
-        
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/it-course:latest
