@@ -1,0 +1,6 @@
+#Requirement roles
+- src: geerlingguy.docker
+  version: 4.1.0
+
+- src: geerlingguy.docker_container
+  version: 1.5.0
